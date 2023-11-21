@@ -1,8 +1,10 @@
 package com.example;
+import com.example.factoryMethod.ConcreteCreatorHeineken;
+import com.example.factoryMethod.ConcreteCreatorStellaArtois;
+import com.example.factoryMethod.ICreatorBeer;
+import com.example.factoryMethod.IProduct;
 import com.example.singleton.AppsConfig;
 import java.util.Scanner;
-
-
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +20,14 @@ public class Main {
             // Acceder a los atributos o métodos de la instancia
             System.out.println("Database URL: " + appConfig.getDatabaseUrl());
             System.out.println("API Key: " + appConfig.getApiKey());
+        }else if(userInput.equals("factoryMethod")){
+            ICreatorBeer creatorBeerA = new ConcreteCreatorHeineken();
+            IProduct productA = creatorBeerA.FactoryBeerMethod();
+            productA.Create();
+
+            ICreatorBeer creatorBeerB = new ConcreteCreatorStellaArtois();
+            IProduct productB = creatorBeerB.FactoryBeerMethod();
+            productB.Create();
         }
         scanner.close();
     }
