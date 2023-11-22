@@ -1,4 +1,7 @@
 package com.example;
+import com.example.abstractFactory.AbstractGameFactory;
+import com.example.abstractFactory.RPGGameFacory;
+import com.example.abstractFactory.StrategyGameFactory;
 import com.example.factoryMethod.ConcreteCreatorHeineken;
 import com.example.factoryMethod.ConcreteCreatorStellaArtois;
 import com.example.factoryMethod.ICreatorBeer;
@@ -28,6 +31,23 @@ public class Main {
             ICreatorBeer creatorBeerB = new ConcreteCreatorStellaArtois();
             IProduct productB = creatorBeerB.FactoryBeerMethod();
             productB.Create();
+        }else if(userInput.equals("abstractFactory")){
+            AbstractGameFactory abstractGameFactory= null;
+            System.out.println("Enter 1 for create Strategy Game: ");
+            System.out.println("Enter 2 for create RPG Game: ");
+        // Read the input from the console
+            userInput = scanner.nextLine();
+            if(userInput.equals("1")){
+                 abstractGameFactory = new StrategyGameFactory();
+                 abstractGameFactory.createBoard();
+                 abstractGameFactory.createPices();
+                 abstractGameFactory.createRules();
+            }else if(userInput.equals("2")){
+                 abstractGameFactory = new RPGGameFacory();
+                 abstractGameFactory.createBoard();
+                 abstractGameFactory.createPices();
+                 abstractGameFactory.createRules();
+            }
         }
         scanner.close();
     }
