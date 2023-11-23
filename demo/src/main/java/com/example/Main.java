@@ -2,11 +2,13 @@ package com.example;
 import com.example.abstractFactory.AbstractGameFactory;
 import com.example.abstractFactory.RPGGameFacory;
 import com.example.abstractFactory.StrategyGameFactory;
+import com.example.builder.CarBuilder;
 import com.example.factoryMethod.ConcreteCreatorHeineken;
 import com.example.factoryMethod.ConcreteCreatorStellaArtois;
 import com.example.factoryMethod.ICreatorBeer;
 import com.example.factoryMethod.IProduct;
 import com.example.singleton.AppsConfig;
+import com.example.builder.Car;
 import java.util.Scanner;
 
 public class Main {
@@ -48,6 +50,16 @@ public class Main {
                  abstractGameFactory.createPices();
                  abstractGameFactory.createRules();
             }
+        }else if(userInput.equals("builder")){
+            Car car = new CarBuilder("Mazda", "3", 2016)
+            .setColor("red")
+            .setHorsePower(2000)
+            .build();
+             
+            System.out.println("Car: " + car.getMake() + " " + car.getModel() + " " + car.getYear());
+            System.out.println("Color: " + car.getColor());
+            System.out.println("Horsepower: " + car.getHorsepower());
+
         }
         scanner.close();
     }
