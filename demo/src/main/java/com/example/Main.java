@@ -9,10 +9,12 @@ import com.example.factoryMethod.ICreatorBeer;
 import com.example.factoryMethod.IProduct;
 import com.example.singleton.AppsConfig;
 import com.example.builder.Car;
+import com.example.prototype.BavariaShip;
+import com.example.prototype.NauticShip;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         // Create a Scanner object to read input from the console
         Scanner scanner = new Scanner(System.in);
         // Prompt the user to enter some input
@@ -51,7 +53,8 @@ public class Main {
                  abstractGameFactory.createRules();
             }
         }else if(userInput.equals("builder")){
-            Car car = new CarBuilder("Mazda", "3", 2016)
+            Car car = new 
+            CarBuilder("Mazda", "3", 2016)
             .setColor("red")
             .setHorsePower(2000)
             .build();
@@ -60,6 +63,19 @@ public class Main {
             System.out.println("Color: " + car.getColor());
             System.out.println("Horsepower: " + car.getHorsepower());
 
+        }else if (userInput.equals("prototype")){
+            BavariaShip bavaria = new BavariaShip("Yachts Sport16", 1000.0);
+            BavariaShip cloneBavaria = bavaria.clone();
+
+            System.out.println("Name: " + cloneBavaria.getName());
+            System.out.println("Price: " + cloneBavaria.getPrice());
+
+
+            NauticShip nautic = new NauticShip("AB Inflatables", 2000.0);
+            NauticShip cloneNautic = nautic.clone();
+
+            System.out.println("Name: " + cloneNautic.getName());
+            System.out.println("Price: " + cloneNautic.getPrice());
         }
         scanner.close();
     }
