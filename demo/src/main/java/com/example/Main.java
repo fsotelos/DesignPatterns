@@ -18,7 +18,7 @@ public class Main {
         // Create a Scanner object to read input from the console
         Scanner scanner = new Scanner(System.in);
         // Prompt the user to enter some input
-        System.out.print("Enter something: ");
+        System.out.print("Enter the name Pattern: ");
         // Read the input from the console
         String userInput = scanner.nextLine();
 
