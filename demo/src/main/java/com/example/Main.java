@@ -1,16 +1,21 @@
 package com.example;
-import com.example.abstractFactory.AbstractGameFactory;
-import com.example.abstractFactory.RPGGameFacory;
-import com.example.abstractFactory.StrategyGameFactory;
-import com.example.builder.CarBuilder;
-import com.example.factoryMethod.ConcreteCreatorHeineken;
-import com.example.factoryMethod.ConcreteCreatorStellaArtois;
-import com.example.factoryMethod.ICreatorBeer;
-import com.example.factoryMethod.IProduct;
-import com.example.singleton.AppsConfig;
-import com.example.builder.Car;
-import com.example.prototype.BavariaShip;
-import com.example.prototype.NauticShip;
+import com.example.behavioralPatterns.observer.IObserver;
+import com.example.behavioralPatterns.observer.PhoneApp;
+import com.example.behavioralPatterns.observer.SubjectWeatherStation;
+import com.example.behavioralPatterns.observer.TemperatureDisplay;
+import com.example.creationalPatterns.abstractFactory.AbstractGameFactory;
+import com.example.creationalPatterns.abstractFactory.RPGGameFacory;
+import com.example.creationalPatterns.abstractFactory.StrategyGameFactory;
+import com.example.creationalPatterns.builder.Car;
+import com.example.creationalPatterns.builder.CarBuilder;
+import com.example.creationalPatterns.factoryMethod.ConcreteCreatorHeineken;
+import com.example.creationalPatterns.factoryMethod.ConcreteCreatorStellaArtois;
+import com.example.creationalPatterns.factoryMethod.ICreatorBeer;
+import com.example.creationalPatterns.factoryMethod.IProduct;
+import com.example.creationalPatterns.prototype.BavariaShip;
+import com.example.creationalPatterns.prototype.NauticShip;
+import com.example.creationalPatterns.singleton.AppsConfig;
+
 import java.util.Scanner;
 
 public class Main {
@@ -76,6 +81,15 @@ public class Main {
 
             System.out.println("Name: " + cloneNautic.getName());
             System.out.println("Price: " + cloneNautic.getPrice());
+        }else if (userInput.equals("observer")){
+            SubjectWeatherStation weatherStation = new SubjectWeatherStation();
+            IObserver observerPhone = new PhoneApp();
+            IObserver observerDisplay = new TemperatureDisplay();
+
+            weatherStation.Attach(observerDisplay);
+            weatherStation.Attach(observerPhone);
+
+            weatherStation.setTemperature(10);
         }
         scanner.close();
     }
