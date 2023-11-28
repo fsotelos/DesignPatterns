@@ -3,6 +3,10 @@ import com.example.behavioralPatterns.observer.IObserver;
 import com.example.behavioralPatterns.observer.PhoneApp;
 import com.example.behavioralPatterns.observer.SubjectWeatherStation;
 import com.example.behavioralPatterns.observer.TemperatureDisplay;
+import com.example.behavioralPatterns.strategy.IPaymentProcessorStrategy;
+import com.example.behavioralPatterns.strategy.PaymentProcessor;
+import com.example.behavioralPatterns.strategy.PaypalPaymentStrategy;
+import com.example.behavioralPatterns.strategy.StripePaymentStrategy;
 import com.example.creationalPatterns.abstractFactory.AbstractGameFactory;
 import com.example.creationalPatterns.abstractFactory.RPGGameFacory;
 import com.example.creationalPatterns.abstractFactory.StrategyGameFactory;
@@ -90,6 +94,16 @@ public class Main {
             weatherStation.Attach(observerPhone);
 
             weatherStation.setTemperature(10);
+        }else if(userInput.equals("strategy")){
+            IPaymentProcessorStrategy payPal = new PaypalPaymentStrategy();
+            IPaymentProcessorStrategy stripe = new StripePaymentStrategy();
+            PaymentProcessor paymentProcessor = new PaymentProcessor();
+            paymentProcessor.setPaymentStrategy(payPal);
+            double resultPaypal = paymentProcessor.processPayments(200);
+            System.out.println("The result of Paypal payment is : " + resultPaypal);
+            paymentProcessor.setPaymentStrategy(stripe);
+            double resultStripe = paymentProcessor.processPayments(112);
+            System.out.println("The result of Stripe payment is : " + resultStripe);
         }
         scanner.close();
     }
