@@ -19,6 +19,10 @@ import com.example.creationalPatterns.factoryMethod.IProduct;
 import com.example.creationalPatterns.prototype.BavariaShip;
 import com.example.creationalPatterns.prototype.NauticShip;
 import com.example.creationalPatterns.singleton.AppsConfig;
+import com.example.behavioralPatterns.command.CancelCommand;
+import com.example.behavioralPatterns.command.Order;
+import com.example.behavioralPatterns.command.OrderInvoker;
+import com.example.behavioralPatterns.command.ShipCommand;
 
 import java.util.Scanner;
 
@@ -104,6 +108,18 @@ public class Main {
             paymentProcessor.setPaymentStrategy(stripe);
             double resultStripe = paymentProcessor.processPayments(112);
             System.out.println("The result of Stripe payment is : " + resultStripe);
+        }else if(userInput.equals("command")){
+            Order order1 = new Order(123);
+            Order order2 = new Order(587);
+            CancelCommand cancelCommand = new CancelCommand(order1);
+            
+            OrderInvoker orderInvoker = new OrderInvoker();
+            orderInvoker.setCommand(cancelCommand);
+            orderInvoker.processOrder();
+
+            ShipCommand shipCommand = new ShipCommand(order2);
+            orderInvoker.setCommand(shipCommand);
+            orderInvoker.processOrder();
         }
         scanner.close();
     }
