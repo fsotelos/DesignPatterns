@@ -19,6 +19,11 @@ import com.example.creationalPatterns.factoryMethod.IProduct;
 import com.example.creationalPatterns.prototype.BavariaShip;
 import com.example.creationalPatterns.prototype.NauticShip;
 import com.example.creationalPatterns.singleton.AppsConfig;
+import com.example.behavioralPatterns.chainResponsability.Approver;
+import com.example.behavioralPatterns.chainResponsability.Director;
+import com.example.behavioralPatterns.chainResponsability.Manager;
+import com.example.behavioralPatterns.chainResponsability.President;
+import com.example.behavioralPatterns.chainResponsability.PurchaseRequest;
 import com.example.behavioralPatterns.command.CancelCommand;
 import com.example.behavioralPatterns.command.Order;
 import com.example.behavioralPatterns.command.OrderInvoker;
@@ -120,6 +125,23 @@ public class Main {
             ShipCommand shipCommand = new ShipCommand(order2);
             orderInvoker.setCommand(shipCommand);
             orderInvoker.processOrder();
+        }else if(userInput.equals("changeResponsability")){
+            Approver manager = new Manager();
+            Approver director = new Director();
+            Approver president = new President();
+
+            manager.setNextApprover(director);
+            director.setNextApprover(president);
+
+            // Create a purchase request
+            PurchaseRequest request1 = new PurchaseRequest(1, 800);
+            PurchaseRequest request2 = new PurchaseRequest(2, 3500);
+            PurchaseRequest request3 = new PurchaseRequest(3, 12000);
+
+            // Process the purchase requests
+            manager.processRequest(request1);
+            manager.processRequest(request2);
+            manager.processRequest(request3);
         }
         scanner.close();
     }
