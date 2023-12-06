@@ -3,6 +3,7 @@ import com.example.behavioralPatterns.observer.IObserver;
 import com.example.behavioralPatterns.observer.PhoneApp;
 import com.example.behavioralPatterns.observer.SubjectWeatherStation;
 import com.example.behavioralPatterns.observer.TemperatureDisplay;
+import com.example.behavioralPatterns.state.TrafficLight;
 import com.example.behavioralPatterns.strategy.IPaymentProcessorStrategy;
 import com.example.behavioralPatterns.strategy.PaymentProcessor;
 import com.example.behavioralPatterns.strategy.PaypalPaymentStrategy;
@@ -142,6 +143,12 @@ public class Main {
             manager.processRequest(request1);
             manager.processRequest(request2);
             manager.processRequest(request3);
+        }else if(userInput.equals("state")){
+            TrafficLight trafficLight = new TrafficLight();
+            trafficLight.PerfomeAction();
+            trafficLight.PerfomeAction();
+            trafficLight.PerfomeAction();
+            trafficLight.PerfomeAction();
         }
         scanner.close();
     }
